@@ -12,7 +12,12 @@
   <meta property="og:title" content="Toko SRPCOM - Layanan Digital & PPOB 24 Jam">
   <meta property="og:description" content="Transaksi digital super cepat, hemat, dan aman langsung via WhatsApp & QRIS.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0284c7">
+  <meta property="og:image" content="logo.png">
+  <meta name="theme-color" content="#dc2626">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="logo.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,12 +27,13 @@
         extend: {
           colors: {
             brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              800: '#075985'
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b'
             }
           }
         }
@@ -44,11 +50,11 @@
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen overflow-x-hidden font-sans relative antialiased">
 
-  <!-- Ambient Light Soft Blobs -->
+  <!-- Ambient Light Soft Blobs (Merah, Rose, Amber) -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-sky-200/50 rounded-full blur-[128px]"></div>
-    <div class="absolute top-1/3 -right-32 w-96 h-96 bg-cyan-200/40 rounded-full blur-[128px]"></div>
-    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-blue-200/50 rounded-full blur-[128px]"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-200/50 rounded-full blur-[128px]"></div>
+    <div class="absolute top-1/3 -right-32 w-96 h-96 bg-red-200/40 rounded-full blur-[128px]"></div>
+    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-orange-200/40 rounded-full blur-[128px]"></div>
   </div>
 
   <!-- STICKY NAVBAR -->
@@ -56,11 +62,9 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center">
       <!-- Logo & Brand Name -->
       <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-500 text-white flex items-center justify-center font-black text-xl shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
-          S
-        </div>
+        <img src="logo.png" alt="Logo Toko SRPCOM" class="w-10 h-10 rounded-2xl object-cover shadow-md shadow-red-500/20 group-hover:scale-105 transition-transform bg-white border border-red-100 p-0.5">
         <div>
-          <span class="text-xl md:text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 block leading-tight dynamic-store-name">
+          <span class="text-xl md:text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 block leading-tight dynamic-store-name">
             Toko SRPCOM
           </span>
           <span class="text-[10px] md:text-[11px] font-extrabold text-amber-500 uppercase tracking-widest block">
@@ -71,20 +75,20 @@
 
       <!-- Desktop Navigation Menu -->
       <div class="hidden md:flex gap-6 items-center text-sm font-bold">
-        <a href="#storeSection" class="text-sky-600 hover:text-sky-700 transition flex items-center gap-1.5">
+        <a href="#storeSection" class="text-red-600 hover:text-red-700 transition flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           Pulsa & PPOB
         </a>
-        <button onclick="openCheckOrderModal()" class="text-slate-600 hover:text-sky-600 transition flex items-center gap-1 cursor-pointer">
+        <button onclick="openCheckOrderModal()" class="text-slate-600 hover:text-red-600 transition flex items-center gap-1 cursor-pointer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           Cek Pesanan
         </button>
-        <button onclick="openProofUploadModal()" class="text-slate-600 hover:text-sky-600 transition flex items-center gap-1 cursor-pointer">
+        <button onclick="openProofUploadModal()" class="text-slate-600 hover:text-red-600 transition flex items-center gap-1 cursor-pointer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
           Upload Bukti
         </button>
-        <a href="#caraPesan" class="text-slate-600 hover:text-sky-600 transition">Panduan</a>
-        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition shadow-md shadow-sky-600/20 flex items-center gap-1.5 active:scale-95">
+        <a href="#caraPesan" class="text-slate-600 hover:text-red-600 transition">Panduan</a>
+        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition shadow-md shadow-red-600/20 flex items-center gap-1.5 active:scale-95">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
           Chat Admin
         </a>
@@ -99,25 +103,22 @@
     <!-- Mobile Nav Dropdown -->
     <div id="mobileNav" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 absolute w-full left-0 top-[65px] shadow-2xl transition">
       <div class="flex flex-col p-5 space-y-4">
-        <a href="#storeSection" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-sky-600 font-bold text-base border-b border-slate-100 pb-3 flex items-center gap-2">
+        <a href="#storeSection" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-red-600 font-bold text-base border-b border-slate-100 pb-3 flex items-center gap-2">
           <span>⚡</span> Pulsa & PPOB (Instan 24 Jam)
         </a>
-        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openCheckOrderModal();" class="text-left text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
+        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openCheckOrderModal();" class="text-left text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
           <span>🔍</span> Cek Status Pesanan
         </button>
-        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openProofUploadModal();" class="text-left text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
+        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openProofUploadModal();" class="text-left text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
           <span>📤</span> Upload Bukti Transfer (Drive)
         </button>
-        <a href="#keunggulan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
+        <a href="#keunggulan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3">
           Keunggulan
         </a>
-        <a href="#caraPesan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
-          Cara Pesan
+        <a href="#caraPesan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3">
+          Panduan Pesan
         </a>
-        <a href="#kontak" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
-          Kontak CS
-        </a>
-        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold py-3 px-4 rounded-xl text-center text-sm flex items-center justify-center gap-2 shadow-md">
+        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold py-3 px-4 rounded-xl text-center text-sm flex items-center justify-center gap-2 shadow-md">
           <span>💬</span> Chat WhatsApp Admin
         </a>
       </div>
@@ -127,17 +128,17 @@
   <!-- MAIN CONTENT CONTAINER -->
   <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
 
-    <!-- HERO HEADER BANNER (Adopted from AwanPulsa style) -->
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white p-8 md:p-12 mb-8 shadow-xl">
+    <!-- HERO HEADER BANNER (Merah Vibrant & Modern) -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-600 via-rose-600 to-red-800 text-white p-8 md:p-12 mb-8 shadow-xl shadow-red-950/10">
       <div class="relative z-10 max-w-2xl">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20 text-sky-100 backdrop-blur-md mb-4 border border-white/20">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20 text-rose-100 backdrop-blur-md mb-4 border border-white/20">
           <svg class="w-4 h-4 text-amber-300" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
           Layanan 24 Jam Otomatis & Terpercaya
         </span>
         <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3 leading-tight">
           Isi Pulsa, Paket Data & Layanan Digital
         </h1>
-        <p class="text-sky-100 text-sm md:text-base leading-relaxed mb-6 font-normal">
+        <p class="text-rose-100 text-sm md:text-base leading-relaxed mb-6 font-normal">
           Nikmati kemudahan transaksi serba instan dengan harga termurah. Melayani Pulsa All Operator, Kuota Internet, Token PLN, Top Up Saldo E-Wallet, dan Jasa Digital SRPCOM.
         </p>
 
@@ -157,7 +158,7 @@
 
       <!-- Decorative Ambient Circles -->
       <div class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
-      <div class="absolute -top-24 right-1/4 w-60 h-60 rounded-full bg-cyan-400/20 blur-2xl pointer-events-none"></div>
+      <div class="absolute -top-24 right-1/4 w-60 h-60 rounded-full bg-rose-400/20 blur-2xl pointer-events-none"></div>
     </div>
 
     <!-- STORE SECTION: TABS & PRODUCT CATALOG -->
@@ -167,7 +168,7 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
         <!-- Tab 1: Pulsa Reguler -->
         <button onclick="selectCategory('pulsa')" id="cat-btn-pulsa" class="cat-btn active flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
-          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center transition-all duration-300">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
           </div>
           <span class="text-xs sm:text-sm font-extrabold">Pulsa Reguler</span>
@@ -175,7 +176,7 @@
 
         <!-- Tab 2: Paket Data -->
         <button onclick="selectCategory('data')" id="cat-btn-data" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
-          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center transition-all duration-300">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
           </div>
           <span class="text-xs sm:text-sm font-extrabold">Paket Data</span>
@@ -199,7 +200,7 @@
 
         <!-- Tab 5: Voucher Game -->
         <button onclick="selectCategory('game')" id="cat-btn-game" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
-          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center transition-all duration-300">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
           </div>
           <span class="text-xs sm:text-sm font-extrabold">Voucher Game</span>
@@ -207,7 +208,7 @@
 
         <!-- Tab 6: Layanan SRPCOM -->
         <button onclick="selectCategory('srpcom')" id="cat-btn-srpcom" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
-          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center transition-all duration-300">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
           </div>
           <span class="text-xs sm:text-sm font-extrabold">Layanan SRPCOM</span>
@@ -222,11 +223,11 @@
           </label>
           <div class="relative">
             <input type="tel" id="customerNoInput" oninput="handlePhoneInput(this.value)" placeholder="Contoh: 081234567890" autocomplete="off"
-                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl py-4 pl-4 pr-36 text-lg font-mono font-bold text-slate-900 focus:bg-white focus:border-sky-500 focus:outline-none transition shadow-inner">
+                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl py-4 pl-4 pr-36 text-lg font-mono font-bold text-slate-900 focus:bg-white focus:border-red-500 focus:outline-none transition shadow-inner">
             
             <!-- Operator Badge Detected (Instant 0ms) -->
             <div id="operatorBadge" class="absolute right-3 top-1/2 -translate-y-1/2 hidden items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs">
-              <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
               <span id="operatorName" class="text-xs font-black text-slate-800 uppercase tracking-wider">TELKOMSEL</span>
             </div>
           </div>
@@ -281,7 +282,7 @@
 
       <!-- EMPTY STATE PROMPT -->
       <div id="productsEmpty" class="text-center py-12 px-4 rounded-3xl border-2 border-dashed border-slate-300 bg-white shadow-xs">
-        <div class="w-16 h-16 rounded-2xl bg-sky-50 text-sky-500 mx-auto mb-3 flex items-center justify-center">
+        <div class="w-16 h-16 rounded-2xl bg-red-50 text-red-500 mx-auto mb-3 flex items-center justify-center">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
         </div>
         <p class="text-slate-800 font-extrabold text-base mb-1 empty-title">Silakan masukkan nomor tujuan di atas</p>
@@ -296,14 +297,14 @@
     <!-- KEUNGGULAN TOKO SRPCOM -->
     <section id="keunggulan" class="mt-16 pt-12 border-t border-slate-200 scroll-mt-24">
       <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block mb-1">Mengapa Memilih Kami</span>
+        <span class="text-xs font-bold text-red-600 uppercase tracking-widest block mb-1">Mengapa Memilih Kami</span>
         <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Kenyamanan & Kecepatan Utama</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Card 1 -->
         <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mb-4">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <h3 class="font-extrabold text-slate-900 text-base mb-2">Proses Kilat 24 Jam</h3>
@@ -339,31 +340,31 @@
     <!-- CARA PESAN -->
     <section id="caraPesan" class="mt-16 pt-12 border-t border-slate-200 scroll-mt-24">
       <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block mb-1">Panduan Pengguna</span>
+        <span class="text-xs font-bold text-red-600 uppercase tracking-widest block mb-1">Panduan Pengguna</span>
         <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Cara Mudah Bertransaksi</h2>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
-          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">01</span>
+          <span class="text-2xl font-black text-red-600 font-mono mb-2 block">01</span>
           <h4 class="font-bold text-slate-900 text-sm mb-1">Pilih Kategori</h4>
           <p class="text-xs text-slate-500">Pilih jenis produk seperti Pulsa, Paket Data, Token Listrik, atau E-Wallet.</p>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
-          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">02</span>
+          <span class="text-2xl font-black text-red-600 font-mono mb-2 block">02</span>
           <h4 class="font-bold text-slate-900 text-sm mb-1">Masukkan Nomor</h4>
           <p class="text-xs text-slate-500">Ketik nomor handphone atau ID tujuan. Operator akan terdeteksi otomatis.</p>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
-          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">03</span>
+          <span class="text-2xl font-black text-red-600 font-mono mb-2 block">03</span>
           <h4 class="font-bold text-slate-900 text-sm mb-1">Pilih Produk & Bayar</h4>
           <p class="text-xs text-slate-500">Klik "Beli Sekarang", lalu transfer tepat sesuai nominal + kode unik yang tertera.</p>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
-          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">04</span>
+          <span class="text-2xl font-black text-red-600 font-mono mb-2 block">04</span>
           <h4 class="font-bold text-slate-900 text-sm mb-1">Konfirmasi WhatsApp</h4>
           <p class="text-xs text-slate-500">Klik konfirmasi untuk membuka pesan WhatsApp otomatis ke Admin Toko SRPCOM.</p>
         </div>
@@ -380,9 +381,7 @@
         <!-- Kolom 1: Profil Brand -->
         <div class="md:col-span-2">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 text-white flex items-center justify-center font-black text-lg shadow-sm">
-              S
-            </div>
+            <img src="logo.png" alt="Logo Toko SRPCOM" class="w-9 h-9 rounded-xl object-cover shadow-sm bg-white border border-red-100 p-0.5">
             <span class="text-xl font-black tracking-tight text-slate-900 dynamic-store-name">Toko SRPCOM</span>
           </div>
           <p class="text-xs text-slate-500 leading-relaxed mb-4 max-w-sm">
@@ -399,11 +398,11 @@
         <div>
           <h4 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-3">Layanan Kami</h4>
           <ul class="space-y-2 text-xs text-slate-600">
-            <li><a href="#storeSection" onclick="selectCategory('pulsa')" class="hover:text-sky-600 transition">Pulsa Reguler</a></li>
-            <li><a href="#storeSection" onclick="selectCategory('data')" class="hover:text-sky-600 transition">Paket Data Internet</a></li>
-            <li><a href="#storeSection" onclick="selectCategory('pln')" class="hover:text-sky-600 transition">Token Listrik PLN</a></li>
-            <li><a href="#storeSection" onclick="selectCategory('ewallet')" class="hover:text-sky-600 transition">Top Up E-Wallet</a></li>
-            <li><a href="#storeSection" onclick="selectCategory('srpcom')" class="hover:text-sky-600 transition">Layanan Khusus SRPCOM</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('pulsa')" class="hover:text-red-600 transition">Pulsa Reguler</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('data')" class="hover:text-red-600 transition">Paket Data Internet</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('pln')" class="hover:text-red-600 transition">Token Listrik PLN</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('ewallet')" class="hover:text-red-600 transition">Top Up E-Wallet</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('srpcom')" class="hover:text-red-600 transition">Layanan Khusus SRPCOM</a></li>
           </ul>
         </div>
 

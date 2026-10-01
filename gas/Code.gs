@@ -314,7 +314,7 @@ function setupDatabase() {
   const prodHeaders = ['Kode Produk', 'Nama Produk', 'Kategori', 'Brand', 'Harga Jual', 'Deskripsi', 'Status'];
   prodSheet.getRange(1, 1, 1, prodHeaders.length).setValues([prodHeaders]);
   prodSheet.getRange(1, 1, 1, prodHeaders.length)
-    .setBackground('#0284c7')
+    .setBackground('#dc2626')
     .setFontColor('#ffffff')
     .setFontWeight('bold');
 

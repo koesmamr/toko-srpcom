@@ -276,7 +276,7 @@ function renderBrandPills(brands, activeBrand) {
   const container = document.getElementById('brandPills');
   if (!container) return;
   container.innerHTML = brands.map(b => `
-    <button onclick="setBrand('${b}')" id="pill-${b}" class="brand-pill ${b === activeBrand ? 'bg-sky-600 text-white shadow-md' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'} font-bold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer">
+    <button onclick="setBrand('${b}')" id="pill-${b}" class="brand-pill ${b === activeBrand ? 'bg-red-600 text-white shadow-md' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'} font-bold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer">
       ${BRAND_NAMES[b] || b}
     </button>
   `).join('');
@@ -286,13 +286,13 @@ function setBrand(brand) {
   currentBrand = brand;
   if (currentCategory === 'ewallet') activeEwalletBrand = brand;
   document.querySelectorAll('.brand-pill').forEach(btn => {
-    btn.classList.remove('bg-sky-600', 'text-white', 'shadow-md');
+    btn.classList.remove('bg-red-600', 'text-white', 'shadow-md');
     btn.classList.add('bg-slate-100', 'text-slate-700');
   });
   const activeBtn = document.getElementById('pill-' + brand);
   if (activeBtn) {
     activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
-    activeBtn.classList.add('bg-sky-600', 'text-white', 'shadow-md');
+    activeBtn.classList.add('bg-red-600', 'text-white', 'shadow-md');
   }
   renderFilteredProducts();
 }
@@ -388,10 +388,10 @@ function renderFilteredProducts() {
   const isLocked = remaining > 0;
 
   grid.innerHTML = filtered.map(p => `
-    <div onclick="initiateCheckout('${p.code}')" class="product-card p-5 rounded-3xl border-2 border-slate-200 bg-white hover:border-sky-500 hover:shadow-xl transition cursor-pointer flex flex-col justify-between group relative overflow-hidden">
+    <div onclick="initiateCheckout('${p.code}')" class="product-card p-5 rounded-3xl border-2 border-slate-200 bg-white hover:border-red-500 hover:shadow-xl transition cursor-pointer flex flex-col justify-between group relative overflow-hidden">
       <div class="relative z-10">
         <div class="flex items-start justify-between gap-2 mb-2">
-          <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-100">
+          <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-100">
             ${p.brand}
           </span>
           <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
@@ -399,7 +399,7 @@ function renderFilteredProducts() {
             Proses Cepat
           </span>
         </div>
-        <h4 class="font-extrabold text-slate-900 text-base mb-1 group-hover:text-sky-600 transition leading-snug">
+        <h4 class="font-extrabold text-slate-900 text-base mb-1 group-hover:text-red-600 transition leading-snug">
           ${escapeHtml(p.name)}
         </h4>
         <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">
@@ -410,11 +410,11 @@ function renderFilteredProducts() {
       <div class="pt-3 border-t border-slate-100 flex items-center justify-between relative z-10">
         <div>
           <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Harga</span>
-          <div class="text-lg font-black text-sky-600 font-mono">
+          <div class="text-lg font-black text-red-600 font-mono">
             ${formatRupiah(p.price)}
           </div>
         </div>
-        <button type="button" class="btn-buy-product ${isLocked ? 'bg-slate-300 text-slate-600 cursor-not-allowed' : 'bg-sky-600 hover:bg-sky-500 text-white cursor-pointer shadow-md shadow-sky-600/20 active:scale-95'} font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5" ${isLocked ? 'disabled' : ''}>
+        <button type="button" class="btn-buy-product ${isLocked ? 'bg-slate-300 text-slate-600 cursor-not-allowed' : 'bg-red-600 hover:bg-red-500 text-white cursor-pointer shadow-md shadow-red-600/20 active:scale-95'} font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5" ${isLocked ? 'disabled' : ''}>
           <span>${isLocked ? '⏳ Tunggu' : 'Beli Sekarang'}</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
@@ -443,7 +443,7 @@ function initiateCheckout(productCode) {
       icon: 'warning',
       title: 'Nomor Tujuan Belum Diisi',
       text: 'Harap masukkan nomor handphone, nomor meter, atau ID tujuan sebelum melanjutkan.',
-      confirmButtonColor: '#0284c7'
+      confirmButtonColor: '#dc2626'
     });
     document.getElementById('customerNoInput').focus();
     return;
@@ -465,7 +465,7 @@ function initiateCheckout(productCode) {
       <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
         <div class="flex justify-between items-start mb-2">
           <div>
-            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-sky-100 text-sky-800">${product.brand}</span>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-red-100 text-red-800">${product.brand}</span>
             <h4 class="font-black text-slate-900 text-base mt-1">${escapeHtml(product.name)}</h4>
           </div>
           <span class="text-xs font-mono font-bold text-slate-500">${orderRef}</span>
@@ -493,7 +493,7 @@ function initiateCheckout(productCode) {
         <p class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Pilih Rekening Tujuan:</p>
         <div class="space-y-2 max-h-48 overflow-y-auto custom-scrollbar pr-1">
           <!-- BSI -->
-          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-sky-400 transition">
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-red-400 transition">
             <div class="flex items-center gap-2.5">
               <span class="text-2xl">${acc.bsi.icon}</span>
               <div>
@@ -501,13 +501,13 @@ function initiateCheckout(productCode) {
                 <p class="text-[11px] text-slate-500">A/N: <b>${acc.bsi.accountName}</b></p>
               </div>
             </div>
-            <button type="button" onclick="copyToClipboard('${acc.bsi.accountNo}', 'No Rekening BSI')" class="bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
+            <button type="button" onclick="copyToClipboard('${acc.bsi.accountNo}', 'No Rekening BSI')" class="bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
               ${acc.bsi.accountNo} 📋
             </button>
           </div>
 
           <!-- BCA -->
-          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-sky-400 transition">
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-red-400 transition">
             <div class="flex items-center gap-2.5">
               <span class="text-2xl">${acc.bca.icon}</span>
               <div>
@@ -515,13 +515,13 @@ function initiateCheckout(productCode) {
                 <p class="text-[11px] text-slate-500">A/N: <b>${acc.bca.accountName}</b></p>
               </div>
             </div>
-            <button type="button" onclick="copyToClipboard('${acc.bca.accountNo}', 'No Rekening BCA')" class="bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
+            <button type="button" onclick="copyToClipboard('${acc.bca.accountNo}', 'No Rekening BCA')" class="bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
               ${acc.bca.accountNo} 📋
             </button>
           </div>
 
           <!-- DANA -->
-          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-sky-400 transition">
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-red-400 transition">
             <div class="flex items-center gap-2.5">
               <span class="text-2xl">${acc.dana.icon}</span>
               <div>
@@ -529,7 +529,7 @@ function initiateCheckout(productCode) {
                 <p class="text-[11px] text-slate-500">A/N: <b>${acc.dana.accountName}</b></p>
               </div>
             </div>
-            <button type="button" onclick="copyToClipboard('${acc.dana.accountNo}', 'Nomor DANA')" class="bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
+            <button type="button" onclick="copyToClipboard('${acc.dana.accountNo}', 'Nomor DANA')" class="bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
               ${acc.dana.accountNo} 📋
             </button>
           </div>
@@ -596,7 +596,7 @@ function initiateCheckout(productCode) {
             showCancelButton: true,
             confirmButtonText: '📤 Upload Bukti Transfer',
             cancelButtonText: 'Nanti via WhatsApp',
-            confirmButtonColor: '#0284c7',
+            confirmButtonColor: '#dc2626',
             cancelButtonColor: '#64748b',
             customClass: { popup: 'srpcom-modal' }
           }).then((upRes) => {
@@ -636,11 +636,11 @@ function openProofUploadModal(defaultRef = '') {
       <div class="text-left text-sm space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. Referensi Pesanan</label>
-          <input type="text" id="uploadOrderRef" value="${defaultRef}" placeholder="Contoh: SRP-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <input type="text" id="uploadOrderRef" value="${defaultRef}" placeholder="Contoh: SRP-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500">
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Gambar Bukti (JPG/PNG)</label>
-          <input type="file" id="uploadFilePicker" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100 cursor-pointer">
+          <input type="file" id="uploadFilePicker" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer">
         </div>
         <p class="text-[11px] text-slate-400">File akan otomatis disimpan dengan aman di Google Drive Toko SRPCOM.</p>
       </div>
@@ -648,7 +648,7 @@ function openProofUploadModal(defaultRef = '') {
     showCancelButton: true,
     confirmButtonText: '🚀 Unggah Sekarang',
     cancelButtonText: 'Batal',
-    confirmButtonColor: '#0284c7',
+    confirmButtonColor: '#dc2626',
     preConfirm: () => {
       const ref = document.getElementById('uploadOrderRef').value.trim();
       const fileInput = document.getElementById('uploadFilePicker');
@@ -671,7 +671,7 @@ function openProofUploadModal(defaultRef = '') {
           icon: 'info',
           title: 'Mode Offline Aktif',
           text: 'Backend Google Apps Script belum dikonfigurasi. Silakan kirimkan bukti transfer Anda langsung ke nomor WhatsApp Admin.',
-          confirmButtonColor: '#0284c7'
+          confirmButtonColor: '#dc2626'
         });
         return;
       }
@@ -720,7 +720,7 @@ function openProofUploadModal(defaultRef = '') {
           icon: 'error',
           title: 'Gagal Mengunggah',
           text: err.message || 'Terjadi kesalahan jaringan saat mengunggah file.',
-          confirmButtonColor: '#0284c7'
+          confirmButtonColor: '#dc2626'
         });
       }
     }
@@ -735,7 +735,7 @@ function openCheckOrderModal() {
       <div class="text-left text-sm space-y-3">
         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nomor Referensi Transaksi</label>
         <div class="flex gap-2">
-          <input type="text" id="checkOrderRef" placeholder="Contoh: SRP-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 uppercase">
+          <input type="text" id="checkOrderRef" placeholder="Contoh: SRP-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 uppercase">
         </div>
         <p class="text-[11px] text-slate-400">Nomor referensi tertera pada ringkasan pesanan dan pesan WhatsApp Anda.</p>
       </div>
@@ -743,7 +743,7 @@ function openCheckOrderModal() {
     showCancelButton: true,
     confirmButtonText: '🔍 Cek Status',
     cancelButtonText: 'Tutup',
-    confirmButtonColor: '#0284c7',
+    confirmButtonColor: '#dc2626',
     preConfirm: () => {
       const ref = document.getElementById('checkOrderRef').value.trim();
       if (!ref) {
@@ -801,19 +801,19 @@ function openCheckOrderModal() {
                   <div>Tujuan/ID: <b class="text-slate-900 font-mono">${escapeHtml(ord.customerNo)}</b></div>
                   <div>Total Bayar: <b class="text-emerald-600 font-mono font-bold">${formatRupiah(ord.totalPrice)}</b></div>
                   <div>Waktu: <span class="text-slate-500">${ord.timestamp}</span></div>
-                  <div>Bukti: ${ord.proofUrl && ord.proofUrl !== '-' ? `<a href="${ord.proofUrl}" target="_blank" class="text-sky-600 underline font-bold">Lihat di Google Drive ↗</a>` : '<span class="text-slate-400">Belum diunggah</span>'}</div>
+                  <div>Bukti: ${ord.proofUrl && ord.proofUrl !== '-' ? `<a href="${ord.proofUrl}" target="_blank" class="text-red-600 underline font-bold">Lihat di Google Drive ↗</a>` : '<span class="text-slate-400">Belum diunggah</span>'}</div>
                 </div>
               </div>
             `,
             confirmButtonText: 'Tutup',
-            confirmButtonColor: '#0284c7'
+            confirmButtonColor: '#dc2626'
           });
         } else {
           Swal.fire({
             icon: 'warning',
             title: 'Tidak Ditemukan',
             text: `Pesanan dengan nomor referensi ${ref} tidak ditemukan di database.`,
-            confirmButtonColor: '#0284c7'
+            confirmButtonColor: '#dc2626'
           });
         }
       } catch (err) {
@@ -821,7 +821,7 @@ function openCheckOrderModal() {
           icon: 'error',
           title: 'Gagal Mengambil Data',
           text: err.message,
-          confirmButtonColor: '#0284c7'
+          confirmButtonColor: '#dc2626'
         });
       }
     }
@@ -899,12 +899,12 @@ function updateAllButtonsLockState(remaining = 0) {
   document.querySelectorAll('.btn-buy-product').forEach(btn => {
     if (isLocked) {
       btn.disabled = true;
-      btn.classList.remove('bg-sky-600', 'hover:bg-sky-500', 'cursor-pointer');
+      btn.classList.remove('bg-red-600', 'hover:bg-red-500', 'cursor-pointer');
       btn.classList.add('bg-slate-300', 'text-slate-600', 'cursor-not-allowed');
       btn.innerText = `⏳ Tunggu (${remaining}s)`;
     } else {
       btn.disabled = false;
-      btn.classList.add('bg-sky-600', 'hover:bg-sky-500', 'cursor-pointer');
+      btn.classList.add('bg-red-600', 'hover:bg-red-500', 'cursor-pointer');
       btn.classList.remove('bg-slate-300', 'text-slate-600', 'cursor-not-allowed');
       btn.innerText = 'Beli Sekarang';
     }
