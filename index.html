@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Toko SRPCOM - Agen Pulsa All Operator, Paket Data, Token PLN & Layanan Digital 24 Jam</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Toko SRPCOM - Platform Isi Pulsa Reguler All Operator, Paket Kuota Data, Token Listrik PLN, Top Up Saldo E-Wallet & Layanan Digital 24 Jam Termurah dan Terpercaya.">
+  <meta name="keywords" content="toko srpcom, pulsa murah, paket data, token pln, top up dana, shopeepay, gopay, voucher game, srpcom">
+  <meta name="author" content="Toko SRPCOM">
+  <meta property="og:title" content="Toko SRPCOM - Layanan Digital & PPOB 24 Jam">
+  <meta property="og:description" content="Transaksi digital super cepat, hemat, dan aman langsung via WhatsApp & QRIS.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0284c7">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- SweetAlert2 & QRCode.js -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen overflow-x-hidden font-sans relative antialiased">
+
+  <!-- Ambient Light Soft Blobs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-sky-200/50 rounded-full blur-[128px]"></div>
+    <div class="absolute top-1/3 -right-32 w-96 h-96 bg-cyan-200/40 rounded-full blur-[128px]"></div>
+    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-blue-200/50 rounded-full blur-[128px]"></div>
+  </div>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 transition shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center">
+      <!-- Logo & Brand Name -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-500 text-white flex items-center justify-center font-black text-xl shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
+          S
+        </div>
+        <div>
+          <span class="text-xl md:text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 block leading-tight dynamic-store-name">
+            Toko SRPCOM
+          </span>
+          <span class="text-[10px] md:text-[11px] font-extrabold text-amber-500 uppercase tracking-widest block">
+            ✦ Solusi Digital & Pulsa 24 Jam ✦
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden md:flex gap-7 items-center text-sm font-bold">
+        <a href="#storeSection" class="text-sky-600 hover:text-sky-700 transition flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Pulsa & PPOB
+        </a>
+        <a href="#keunggulan" class="text-slate-600 hover:text-sky-600 transition">Keunggulan</a>
+        <a href="#caraPesan" class="text-slate-600 hover:text-sky-600 transition">Cara Pesan</a>
+        <a href="#kontak" class="text-slate-600 hover:text-sky-600 transition">Kontak CS</a>
+        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold py-2 px-5 rounded-xl text-xs transition shadow-md shadow-sky-600/20 flex items-center gap-2 active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          Chat Admin
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')" class="md:hidden pulse-hamburger p-2 rounded-xl hover:bg-slate-100 transition" aria-label="Toggle Navigation">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobileNav" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 absolute w-full left-0 top-[65px] shadow-2xl transition">
+      <div class="flex flex-col p-5 space-y-4">
+        <a href="#storeSection" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-sky-600 font-bold text-base border-b border-slate-100 pb-3 flex items-center gap-2">
+          <span>⚡</span> Pulsa & PPOB (Instan 24 Jam)
+        </a>
+        <a href="#keunggulan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
+          Keunggulan
+        </a>
+        <a href="#caraPesan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
+          Cara Pesan
+        </a>
+        <a href="#kontak" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
+          Kontak CS
+        </a>
+        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold py-3 px-4 rounded-xl text-center text-sm flex items-center justify-center gap-2 shadow-md">
+          <span>💬</span> Chat WhatsApp Admin
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
+
+    <!-- HERO HEADER BANNER (Adopted from AwanPulsa style) -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white p-8 md:p-12 mb-8 shadow-xl">
+      <div class="relative z-10 max-w-2xl">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20 text-sky-100 backdrop-blur-md mb-4 border border-white/20">
+          <svg class="w-4 h-4 text-amber-300" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+          Layanan 24 Jam Otomatis & Terpercaya
+        </span>
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3 leading-tight">
+          Isi Pulsa, Paket Data & Layanan Digital
+        </h1>
+        <p class="text-sky-100 text-sm md:text-base leading-relaxed mb-6 font-normal">
+          Nikmati kemudahan transaksi serba instan dengan harga termurah. Melayani Pulsa All Operator, Kuota Internet, Token PLN, Top Up Saldo E-Wallet, dan Jasa Digital SRPCOM.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20 text-xs font-semibold">
+            <span class="text-emerald-300">✓</span> Transaksi Kilat
+          </div>
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20 text-xs font-semibold">
+            <span class="text-emerald-300">✓</span> Verifikasi QRIS & Bank
+          </div>
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20 text-xs font-semibold">
+            <span class="text-emerald-300">✓</span> Garansi 100%
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative Ambient Circles -->
+      <div class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+      <div class="absolute -top-24 right-1/4 w-60 h-60 rounded-full bg-cyan-400/20 blur-2xl pointer-events-none"></div>
+    </div>
+
+    <!-- STORE SECTION: TABS & PRODUCT CATALOG -->
+    <section id="storeSection" class="scroll-mt-24">
+      
+      <!-- KATEGORI TAB SELECTOR (6 Kategori Utama) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+        <!-- Tab 1: Pulsa Reguler -->
+        <button onclick="selectCategory('pulsa')" id="cat-btn-pulsa" class="cat-btn active flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <span class="text-xs sm:text-sm font-extrabold">Pulsa Reguler</span>
+        </button>
+
+        <!-- Tab 2: Paket Data -->
+        <button onclick="selectCategory('data')" id="cat-btn-data" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+          </div>
+          <span class="text-xs sm:text-sm font-extrabold">Paket Data</span>
+        </button>
+
+        <!-- Tab 3: Token PLN -->
+        <button onclick="selectCategory('pln')" id="cat-btn-pln" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <span class="text-xs sm:text-sm font-extrabold">Token PLN</span>
+        </button>
+
+        <!-- Tab 4: E-Wallet -->
+        <button onclick="selectCategory('ewallet')" id="cat-btn-ewallet" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          </div>
+          <span class="text-xs sm:text-sm font-extrabold">E-Wallet</span>
+        </button>
+
+        <!-- Tab 5: Voucher Game -->
+        <button onclick="selectCategory('game')" id="cat-btn-game" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+          </div>
+          <span class="text-xs sm:text-sm font-extrabold">Voucher Game</span>
+        </button>
+
+        <!-- Tab 6: Layanan SRPCOM -->
+        <button onclick="selectCategory('srpcom')" id="cat-btn-srpcom" class="cat-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 font-bold text-center gap-2 shadow-xs cursor-pointer">
+          <div class="cat-icon-wrapper w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <span class="text-xs sm:text-sm font-extrabold">Layanan SRPCOM</span>
+        </button>
+      </div>
+
+      <!-- INPUT NOMOR TUJUAN & DETEKSI OTOMATIS -->
+      <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-200 mb-8 relative">
+        <div class="mb-4">
+          <label id="input-label" for="customerNoInput" class="block text-xs font-black text-slate-700 uppercase tracking-wider mb-2">
+            Nomor Handphone Tujuan
+          </label>
+          <div class="relative">
+            <input type="tel" id="customerNoInput" oninput="handlePhoneInput(this.value)" placeholder="Contoh: 081234567890" autocomplete="off"
+                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl py-4 pl-4 pr-36 text-lg font-mono font-bold text-slate-900 focus:bg-white focus:border-sky-500 focus:outline-none transition shadow-inner">
+            
+            <!-- Operator Badge Detected (Instant 0ms) -->
+            <div id="operatorBadge" class="absolute right-3 top-1/2 -translate-y-1/2 hidden items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+              <span id="operatorName" class="text-xs font-black text-slate-800 uppercase tracking-wider">TELKOMSEL</span>
+            </div>
+          </div>
+          <p id="helperText" class="text-xs text-slate-500 mt-2 font-medium">
+            Ketik 4 digit nomor HP untuk otomatis mendeteksi operator (Telkomsel, Indosat, XL, Axis, Tri, Smartfren, By.U).
+          </p>
+        </div>
+
+        <!-- Sub-Brand Selector (Khusus E-Wallet & Game) -->
+        <div id="brandSelectorContainer" class="hidden mt-4 pt-4 border-t border-slate-100">
+          <label class="block text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Pilih Penyedia / Provider</label>
+          <div id="brandPills" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <!-- ANTI DOUBLE-CLICK LOCK NOTICE (30s Idempotency Banner) -->
+      <div id="trxLockNotice" class="hidden mb-6 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border-2 border-amber-300 text-amber-900 shadow-sm flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm shrink-0">
+            ⏳
+          </div>
+          <div>
+            <div class="font-extrabold text-sm text-amber-950 flex items-center gap-2">
+              <span>Proteksi Anti Double-Order Aktif</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-200 text-amber-900 uppercase">30 Detik</span>
+            </div>
+            <p class="text-xs text-amber-800 mt-0.5">Tombol transaksi dikunci sementara untuk mencegah order terkirim ganda.</p>
+          </div>
+        </div>
+        <div class="text-right shrink-0 pl-3">
+          <span class="text-[11px] font-bold text-amber-700 block uppercase tracking-wider">Terkunci</span>
+          <span id="trxLockTimerBadge" class="text-2xl font-black font-mono text-amber-900">30s</span>
+        </div>
+      </div>
+
+      <!-- PRODUCT CATALOG HEADER -->
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm font-black text-slate-800 uppercase tracking-wider" id="productListTitle">
+          Pilihan Produk
+        </h3>
+        <span id="productCountBadge" class="text-xs font-bold text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
+          0 produk siap diproses
+        </span>
+      </div>
+
+      <!-- SKELETON LOADING STATE -->
+      <div id="productsLoading" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+        <div class="p-6 rounded-3xl border border-slate-200 skeleton-shimmer h-32"></div>
+        <div class="p-6 rounded-3xl border border-slate-200 skeleton-shimmer h-32"></div>
+        <div class="p-6 rounded-3xl border border-slate-200 skeleton-shimmer h-32"></div>
+      </div>
+
+      <!-- EMPTY STATE PROMPT -->
+      <div id="productsEmpty" class="text-center py-12 px-4 rounded-3xl border-2 border-dashed border-slate-300 bg-white shadow-xs">
+        <div class="w-16 h-16 rounded-2xl bg-sky-50 text-sky-500 mx-auto mb-3 flex items-center justify-center">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        </div>
+        <p class="text-slate-800 font-extrabold text-base mb-1 empty-title">Silakan masukkan nomor tujuan di atas</p>
+        <p class="text-slate-500 text-xs empty-desc">Daftar denominasi dan harga akan otomatis tampil.</p>
+      </div>
+
+      <!-- REAL PRODUCTS GRID -->
+      <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    </section>
+
+    <!-- KEUNGGULAN TOKO SRPCOM -->
+    <section id="keunggulan" class="mt-16 pt-12 border-t border-slate-200 scroll-mt-24">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block mb-1">Mengapa Memilih Kami</span>
+        <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Kenyamanan & Kecepatan Utama</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-extrabold text-slate-900 text-base mb-2">Proses Kilat 24 Jam</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Sistem kami beroperasi secara otomatis dan siap melayani pesanan Anda kapan pun Anda butuhkan.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-extrabold text-slate-900 text-base mb-2">Jaminan Aman & Transparan</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Didukung kode verifikasi unik, struk transaksi, dan konfirmasi langsung ke nomor WhatsApp resmi kami.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-extrabold text-slate-900 text-base mb-2">Metode Pembayaran Lengkap</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Mendukung pembayaran via QRIS All Payment (BCA, Mandiri, BRI, BNI), Bank BSI, BCA, DANA, dan ShopeePay.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARA PESAN -->
+    <section id="caraPesan" class="mt-16 pt-12 border-t border-slate-200 scroll-mt-24">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block mb-1">Panduan Pengguna</span>
+        <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Cara Mudah Bertransaksi</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
+          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">01</span>
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Pilih Kategori</h4>
+          <p class="text-xs text-slate-500">Pilih jenis produk seperti Pulsa, Paket Data, Token Listrik, atau E-Wallet.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
+          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">02</span>
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Masukkan Nomor</h4>
+          <p class="text-xs text-slate-500">Ketik nomor handphone atau ID tujuan. Operator akan terdeteksi otomatis.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
+          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">03</span>
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Pilih Produk & Bayar</h4>
+          <p class="text-xs text-slate-500">Klik "Beli Sekarang", lalu transfer tepat sesuai nominal + kode unik yang tertera.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 relative">
+          <span class="text-2xl font-black text-sky-600 font-mono mb-2 block">04</span>
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Konfirmasi WhatsApp</h4>
+          <p class="text-xs text-slate-500">Klik konfirmasi untuk membuka pesan WhatsApp otomatis ke Admin Toko SRPCOM.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="kontak" class="bg-white border-t border-slate-200 mt-20 relative z-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Kolom 1: Profil Brand -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 text-white flex items-center justify-center font-black text-lg shadow-sm">
+              S
+            </div>
+            <span class="text-xl font-black tracking-tight text-slate-900 dynamic-store-name">Toko SRPCOM</span>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4 max-w-sm">
+            Platform mandiri penyedia layanan isi pulsa all operator, paket kuota internet, token listrik PLN, e-wallet, voucher game, dan jasa teknologi informasi profesional.
+          </p>
+          <div class="flex items-center gap-3 text-xs text-slate-600">
+            <span>📍 Indonesia</span>
+            <span>•</span>
+            <span class="text-emerald-600 font-bold">● Server Online 24 Jam</span>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi Cepat -->
+        <div>
+          <h4 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-3">Layanan Kami</h4>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="#storeSection" onclick="selectCategory('pulsa')" class="hover:text-sky-600 transition">Pulsa Reguler</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('data')" class="hover:text-sky-600 transition">Paket Data Internet</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('pln')" class="hover:text-sky-600 transition">Token Listrik PLN</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('ewallet')" class="hover:text-sky-600 transition">Top Up E-Wallet</a></li>
+            <li><a href="#storeSection" onclick="selectCategory('srpcom')" class="hover:text-sky-600 transition">Layanan Khusus SRPCOM</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Kontak & Bantuan -->
+        <div>
+          <h4 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-3">Customer Service</h4>
+          <p class="text-xs text-slate-500 mb-3">Butuh bantuan transaksi atau pertanyaan seputar layanan?</p>
+          <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm transition">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.087-.177.182-.076.355.101.173.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+            WhatsApp Support
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Payment Badges -->
+      <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>
+          &copy; 2026 <span class="font-bold text-slate-800 dynamic-store-name">Toko SRPCOM</span>. All rights reserved. Hosting via GitHub Pages.
+        </div>
+        <div class="flex items-center gap-2 font-mono font-bold text-[10px] text-slate-400">
+          <span class="bg-slate-100 px-2 py-1 rounded">QRIS</span>
+          <span class="bg-slate-100 px-2 py-1 rounded">BANK BSI</span>
+          <span class="bg-slate-100 px-2 py-1 rounded">BCA</span>
+          <span class="bg-slate-100 px-2 py-1 rounded">DANA</span>
+          <span class="bg-slate-100 px-2 py-1 rounded">SHOPEEPAY</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Main Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
