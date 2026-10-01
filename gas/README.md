@@ -51,7 +51,7 @@ Buka file [`app.js`](file:///app.js) di repository Anda, lalu tempel URL Web App
 ```javascript
 const SRPCOM_CONFIG = {
   storeName: 'Toko SRPCOM',
-  whatsappNumber: '628979527685',
+  whatsappNumber: '6281330639240',
   gasApiUrl: 'https://script.google.com/macros/s/AKfycb.../exec', // <-- Tempel URL Anda di sini
   // ...
 };

@@ -68,13 +68,13 @@ Buka file [`app.js`](file:///app.js) dan sesuaikan bagian `SRPCOM_CONFIG`:
 ```javascript
 const SRPCOM_CONFIG = {
   storeName: 'Toko SRPCOM',
-  whatsappNumber: '628979527685', // Nomor WhatsApp admin tujuan order
+  whatsappNumber: '6281330639240', // Nomor WhatsApp admin tujuan order
   gasApiUrl: '', // Isi setelah menyelesaikan Fase 2 (Google Apps Script)
   paymentAccounts: {
     bsi: { accountNo: '7253303867', accountName: 'SRPCOM OFFICIAL' },
     bca: { accountNo: '8110928371', accountName: 'SRPCOM OFFICIAL' },
-    dana: { accountNo: '08979527685', accountName: 'SRPCOM DIGITAL' },
-    shopeepay: { accountNo: '08979527685', accountName: 'SRPCOM DIGITAL' }
+    dana: { accountNo: '081330639240', accountName: 'SRPCOM DIGITAL' },
+    shopeepay: { accountNo: '081330639240', accountName: 'SRPCOM DIGITAL' }
   }
 };
 ```

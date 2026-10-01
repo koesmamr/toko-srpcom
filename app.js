@@ -9,7 +9,7 @@
 const SRPCOM_CONFIG = {
   storeName: 'Toko SRPCOM',
   tagline: '✦ Pusat Layanan Digital & PPOB 24 Jam ✦',
-  whatsappNumber: '628979527685', // Format: 628xxx (tanpa + atau 0)
+  whatsappNumber: '6281330639240', // Format: 628xxx (tanpa + atau 0)
   
   // URL Web App Google Apps Script (Diisi saat Fase 2 selesai)
   gasApiUrl: '', 
@@ -30,22 +30,23 @@ const SRPCOM_CONFIG = {
     },
     dana: {
       bankName: 'DANA',
-      accountNo: '08979527685',
+      accountNo: '081330639240',
       accountName: 'SRPCOM DIGITAL',
       icon: '📱'
     },
     shopeepay: {
       bankName: 'ShopeePay',
-      accountNo: '08979527685',
+      accountNo: '081330639240',
       accountName: 'SRPCOM DIGITAL',
       icon: '🛍️'
     }
   },
 
-  // QRIS String / URL Gambar
+  // QRIS Toko SRPCOM (Gunakan qris.jpg di root folder)
   qris: {
-    qrString: '00020101021126670016ID.CO.SHOPEE.WWW011893600918000000000002150000000000000000303UMI51440014ID.CO.QRIS.WWW0215ID10200210000000303UMI5204599953033605802ID5911TOKO SRPCOM6007BANDUNG61054011562070703A01630454D1',
-    qrImage: '' // Jika ingin menyematkan link gambar langsung
+    image: 'qris.jpg',
+    merchantName: 'TOKO SRPCOM',
+    nmid: 'ID1024250012345'
   }
 };
 
@@ -488,10 +489,41 @@ function initiateCheckout(productCode) {
         </p>
       </div>
 
-      <!-- Pilihan Rekening & E-Wallet -->
+      <!-- Pilihan Metode Pembayaran: Tab QRIS vs Transfer Manual -->
       <div>
-        <p class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Pilih Rekening Tujuan:</p>
-        <div class="space-y-2 max-h-48 overflow-y-auto custom-scrollbar pr-1">
+        <p class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Pilih Cara Pembayaran:</p>
+        <div class="flex gap-2 mb-3">
+          <button type="button" onclick="window.switchPayTab('qris')" id="tabBtnQris" class="flex-1 py-2 px-3 text-xs font-black rounded-xl border-2 border-red-600 bg-red-50 text-red-700 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs">
+            <span>📱</span>
+            <span>QRIS All Payment</span>
+          </button>
+          <button type="button" onclick="window.switchPayTab('bank')" id="tabBtnBank" class="flex-1 py-2 px-3 text-xs font-bold rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition flex items-center justify-center gap-1.5 cursor-pointer">
+            <span>🏦</span>
+            <span>Transfer Rekening</span>
+          </button>
+        </div>
+
+        <!-- Panel 1: QRIS -->
+        <div id="panelQris" class="p-3.5 bg-slate-50/70 border border-slate-200 rounded-2xl text-center space-y-2">
+          <div class="inline-block p-2 bg-white border border-slate-200 rounded-xl shadow-xs">
+            <img src="${SRPCOM_CONFIG.qris.image}" alt="QRIS Toko SRPCOM" class="w-44 h-auto mx-auto rounded-lg object-contain">
+          </div>
+          <div>
+            <span class="text-xs font-black text-slate-800 uppercase block tracking-wider">${SRPCOM_CONFIG.qris.merchantName}</span>
+            <span class="text-[10px] font-mono text-slate-500">NMID: ${SRPCOM_CONFIG.qris.nmid}</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 pt-1">
+            <a href="${SRPCOM_CONFIG.qris.image}" target="_blank" download="QRIS_Toko_SRPCOM.jpg" class="inline-flex items-center gap-1 text-xs font-bold text-red-600 hover:text-red-700 bg-white border border-red-200 px-3 py-1.5 rounded-xl shadow-2xs transition">
+              <span>⬇️</span> Simpan / Buka QRIS
+            </a>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-tight pt-1">
+            Menerima pembayaran dari <b>BCA, Mandiri, BRI, BNI, DANA, GoPay, OVO, ShopeePay, LinkAja</b> & semua m-Banking.
+          </p>
+        </div>
+
+        <!-- Panel 2: Transfer Bank & E-Wallet -->
+        <div id="panelBank" class="hidden space-y-2 max-h-48 overflow-y-auto custom-scrollbar pr-1">
           <!-- BSI -->
           <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-red-400 transition">
             <div class="flex items-center gap-2.5">
@@ -531,6 +563,20 @@ function initiateCheckout(productCode) {
             </div>
             <button type="button" onclick="copyToClipboard('${acc.dana.accountNo}', 'Nomor DANA')" class="bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
               ${acc.dana.accountNo} 📋
+            </button>
+          </div>
+
+          <!-- ShopeePay -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex items-center justify-between hover:border-red-400 transition">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">${acc.shopeepay.icon}</span>
+              <div>
+                <h5 class="font-bold text-xs text-slate-900">${acc.shopeepay.bankName}</h5>
+                <p class="text-[11px] text-slate-500">A/N: <b>${acc.shopeepay.accountName}</b></p>
+              </div>
+            </div>
+            <button type="button" onclick="copyToClipboard('${acc.shopeepay.accountNo}', 'Nomor ShopeePay')" class="bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 font-mono font-bold text-xs py-1 px-2.5 rounded-lg border border-slate-200 transition">
+              ${acc.shopeepay.accountNo} 📋
             </button>
           </div>
         </div>
@@ -827,6 +873,58 @@ function openCheckOrderModal() {
     }
   });
 }
+
+// 13D. SWITCH TAB PEMBAYARAN (QRIS VS BANK)
+window.switchPayTab = function(mode) {
+  const btnQris = document.getElementById('tabBtnQris');
+  const btnBank = document.getElementById('tabBtnBank');
+  const panelQris = document.getElementById('panelQris');
+  const panelBank = document.getElementById('panelBank');
+
+  if (!btnQris || !btnBank || !panelQris || !panelBank) return;
+
+  if (mode === 'qris') {
+    btnQris.className = 'flex-1 py-2 px-3 text-xs font-black rounded-xl border-2 border-red-600 bg-red-50 text-red-700 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs';
+    btnBank.className = 'flex-1 py-2 px-3 text-xs font-bold rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition flex items-center justify-center gap-1.5 cursor-pointer';
+    panelQris.classList.remove('hidden');
+    panelBank.classList.add('hidden');
+  } else {
+    btnBank.className = 'flex-1 py-2 px-3 text-xs font-black rounded-xl border-2 border-red-600 bg-red-50 text-red-700 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs';
+    btnQris.className = 'flex-1 py-2 px-3 text-xs font-bold rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition flex items-center justify-center gap-1.5 cursor-pointer';
+    panelBank.classList.remove('hidden');
+    panelQris.classList.add('hidden');
+  }
+};
+
+// 13E. TAMPILKAN POPUP QRIS TOKO
+window.showQrisPreview = function() {
+  Swal.fire({
+    title: 'QRIS Resmi Toko SRPCOM',
+    html: `
+      <div class="text-center space-y-3">
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 inline-block shadow-sm">
+          <img src="${SRPCOM_CONFIG.qris.image}" alt="QRIS Toko SRPCOM" class="w-64 max-w-full h-auto mx-auto rounded-xl">
+        </div>
+        <div>
+          <h4 class="font-black text-slate-900 text-sm uppercase">${SRPCOM_CONFIG.qris.merchantName}</h4>
+          <p class="text-xs text-slate-500 font-mono">NMID: ${SRPCOM_CONFIG.qris.nmid}</p>
+        </div>
+        <p class="text-xs text-slate-600 max-w-xs mx-auto">
+          Scan menggunakan aplikasi m-Banking (BCA, Mandiri, BRI, BNI) atau e-Wallet (GoPay, DANA, ShopeePay, OVO).
+        </p>
+        <div class="pt-1">
+          <a href="${SRPCOM_CONFIG.qris.image}" download="QRIS_Toko_SRPCOM.jpg" class="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2 px-4 rounded-xl shadow-md transition">
+            <span>📥</span> Download Gambar QRIS
+          </a>
+        </div>
+      </div>
+    `,
+    showConfirmButton: true,
+    confirmButtonText: 'Tutup',
+    confirmButtonColor: '#dc2626',
+    customClass: { popup: 'srpcom-modal' }
+  });
+};
 
 // 14. COPY TO CLIPBOARD HELPER
 window.copyToClipboard = function(text, label = 'Data') {

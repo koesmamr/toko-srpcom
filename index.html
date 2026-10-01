@@ -79,6 +79,10 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           Pulsa & PPOB
         </a>
+        <button onclick="showQrisPreview()" class="text-slate-600 hover:text-red-600 transition flex items-center gap-1 cursor-pointer" title="Lihat Kode QRIS Toko SRPCOM">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+          QRIS
+        </button>
         <button onclick="openCheckOrderModal()" class="text-slate-600 hover:text-red-600 transition flex items-center gap-1 cursor-pointer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           Cek Pesanan
@@ -88,7 +92,7 @@
           Upload Bukti
         </button>
         <a href="#caraPesan" class="text-slate-600 hover:text-red-600 transition">Panduan</a>
-        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition shadow-md shadow-red-600/20 flex items-center gap-1.5 active:scale-95">
+        <a href="https://wa.me/6281330639240?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition shadow-md shadow-red-600/20 flex items-center gap-1.5 active:scale-95">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
           Chat Admin
         </a>
@@ -106,6 +110,9 @@
         <a href="#storeSection" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-red-600 font-bold text-base border-b border-slate-100 pb-3 flex items-center gap-2">
           <span>⚡</span> Pulsa & PPOB (Instan 24 Jam)
         </a>
+        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); showQrisPreview();" class="text-left text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
+          <span>📱</span> QRIS Pembayaran Toko
+        </button>
         <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openCheckOrderModal();" class="text-left text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
           <span>🔍</span> Cek Status Pesanan
         </button>
@@ -118,8 +125,8 @@
         <a href="#caraPesan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-red-600 font-semibold text-base border-b border-slate-100 pb-3">
           Panduan Pesan
         </a>
-        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold py-3 px-4 rounded-xl text-center text-sm flex items-center justify-center gap-2 shadow-md">
-          <span>💬</span> Chat WhatsApp Admin
+        <a href="https://wa.me/6281330639240?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold py-3 px-4 rounded-xl text-center text-sm flex items-center justify-center gap-2 shadow-md">
+          <span>💬</span> Chat WhatsApp Admin (081330639240)
         </a>
       </div>
     </div>
@@ -410,9 +417,9 @@
         <div>
           <h4 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-3">Customer Service</h4>
           <p class="text-xs text-slate-500 mb-3">Butuh bantuan transaksi atau pertanyaan seputar layanan?</p>
-          <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm transition">
+          <a href="https://wa.me/6281330639240?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20bantuan" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm transition">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.087-.177.182-.076.355.101.173.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
-            WhatsApp Support
+            WhatsApp CS (081330639240)
           </a>
         </div>
 
@@ -423,12 +430,14 @@
         <div>
           &copy; 2026 <span class="font-bold text-slate-800 dynamic-store-name">Toko SRPCOM</span>. All rights reserved. Hosting via GitHub Pages.
         </div>
-        <div class="flex items-center gap-2 font-mono font-bold text-[10px] text-slate-400">
-          <span class="bg-slate-100 px-2 py-1 rounded">QRIS</span>
-          <span class="bg-slate-100 px-2 py-1 rounded">BANK BSI</span>
-          <span class="bg-slate-100 px-2 py-1 rounded">BCA</span>
-          <span class="bg-slate-100 px-2 py-1 rounded">DANA</span>
-          <span class="bg-slate-100 px-2 py-1 rounded">SHOPEEPAY</span>
+        <div class="flex items-center flex-wrap gap-2 font-mono font-bold text-[10px] text-slate-500">
+          <button onclick="showQrisPreview()" class="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 px-2.5 py-1 rounded-md transition cursor-pointer flex items-center gap-1 shadow-2xs">
+            <span>📱</span> QRIS ALL PAYMENT
+          </button>
+          <span class="bg-slate-100 px-2.5 py-1 rounded-md">BANK BSI</span>
+          <span class="bg-slate-100 px-2.5 py-1 rounded-md">BCA</span>
+          <span class="bg-slate-100 px-2.5 py-1 rounded-md">DANA</span>
+          <span class="bg-slate-100 px-2.5 py-1 rounded-md">SHOPEEPAY</span>
         </div>
       </div>
     </div>
