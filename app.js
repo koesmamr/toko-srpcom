@@ -11,8 +11,8 @@ const SRPCOM_CONFIG = {
   tagline: '✦ Pusat Layanan Digital & PPOB 24 Jam ✦',
   whatsappNumber: '6281330639240', // Format: 628xxx (tanpa + atau 0)
   
-  // URL Web App Google Apps Script (Diisi saat Fase 2 selesai)
-  gasApiUrl: '', 
+  // URL Web App Google Apps Script
+  gasApiUrl: 'https://script.google.com/macros/s/AKfycbwogZHMfkF23eluCefob0VdbnwEp6epnNAtYTJcOBijTUYvkwA7xAKmo4Rn3HbeU4Xn/exec', 
 
   // Akun Pembayaran Manual Toko SRPCOM
   paymentAccounts: {
