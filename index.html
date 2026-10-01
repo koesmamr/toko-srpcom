@@ -70,15 +70,21 @@
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <div class="hidden md:flex gap-7 items-center text-sm font-bold">
+      <div class="hidden md:flex gap-6 items-center text-sm font-bold">
         <a href="#storeSection" class="text-sky-600 hover:text-sky-700 transition flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           Pulsa & PPOB
         </a>
-        <a href="#keunggulan" class="text-slate-600 hover:text-sky-600 transition">Keunggulan</a>
-        <a href="#caraPesan" class="text-slate-600 hover:text-sky-600 transition">Cara Pesan</a>
-        <a href="#kontak" class="text-slate-600 hover:text-sky-600 transition">Kontak CS</a>
-        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold py-2 px-5 rounded-xl text-xs transition shadow-md shadow-sky-600/20 flex items-center gap-2 active:scale-95">
+        <button onclick="openCheckOrderModal()" class="text-slate-600 hover:text-sky-600 transition flex items-center gap-1 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          Cek Pesanan
+        </button>
+        <button onclick="openProofUploadModal()" class="text-slate-600 hover:text-sky-600 transition flex items-center gap-1 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          Upload Bukti
+        </button>
+        <a href="#caraPesan" class="text-slate-600 hover:text-sky-600 transition">Panduan</a>
+        <a href="https://wa.me/628979527685?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20butuh%20informasi%20layanan" target="_blank" class="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition shadow-md shadow-sky-600/20 flex items-center gap-1.5 active:scale-95">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
           Chat Admin
         </a>
@@ -96,6 +102,12 @@
         <a href="#storeSection" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-sky-600 font-bold text-base border-b border-slate-100 pb-3 flex items-center gap-2">
           <span>⚡</span> Pulsa & PPOB (Instan 24 Jam)
         </a>
+        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openCheckOrderModal();" class="text-left text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
+          <span>🔍</span> Cek Status Pesanan
+        </button>
+        <button onclick="document.getElementById('mobileNav').classList.add('hidden'); openProofUploadModal();" class="text-left text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3 flex items-center gap-2 cursor-pointer">
+          <span>📤</span> Upload Bukti Transfer (Drive)
+        </button>
         <a href="#keunggulan" onclick="document.getElementById('mobileNav').classList.add('hidden')" class="text-slate-700 hover:text-sky-600 font-semibold text-base border-b border-slate-100 pb-3">
           Keunggulan
         </a>

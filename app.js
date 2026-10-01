@@ -586,6 +586,25 @@ function initiateCheckout(productCode) {
           category: product.category,
           status: 'PENDING'
         });
+
+        // Tawarkan upload bukti transfer ke Google Drive
+        setTimeout(() => {
+          Swal.fire({
+            title: 'Sudah Melakukan Transfer?',
+            text: `Anda dapat langsung mengunggah foto/screenshot bukti transfer untuk pesanan ${orderRef} ke sistem kami.`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '📤 Upload Bukti Transfer',
+            cancelButtonText: 'Nanti via WhatsApp',
+            confirmButtonColor: '#0284c7',
+            cancelButtonColor: '#64748b',
+            customClass: { popup: 'srpcom-modal' }
+          }).then((upRes) => {
+            if (upRes.isConfirmed) {
+              openProofUploadModal(orderRef);
+            }
+          });
+        }, 1500);
       }
     }
   });
@@ -596,7 +615,7 @@ async function sendOrderToGAS(orderData) {
   try {
     const res = await fetch(SRPCOM_CONFIG.gasApiUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({
         action: 'createOrder',
         ...orderData
@@ -607,6 +626,206 @@ async function sendOrderToGAS(orderData) {
   } catch (err) {
     console.error('[SRPCOM] Gagal mengirim order ke GAS:', err.message);
   }
+}
+
+// 13B. UPLOAD BUKTI TRANSFER KE GOOGLE DRIVE VIA GAS
+function openProofUploadModal(defaultRef = '') {
+  Swal.fire({
+    title: 'Unggah Bukti Transfer',
+    html: `
+      <div class="text-left text-sm space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. Referensi Pesanan</label>
+          <input type="text" id="uploadOrderRef" value="${defaultRef}" placeholder="Contoh: SRP-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Gambar Bukti (JPG/PNG)</label>
+          <input type="file" id="uploadFilePicker" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100 cursor-pointer">
+        </div>
+        <p class="text-[11px] text-slate-400">File akan otomatis disimpan dengan aman di Google Drive Toko SRPCOM.</p>
+      </div>
+    `,
+    showCancelButton: true,
+    confirmButtonText: '🚀 Unggah Sekarang',
+    cancelButtonText: 'Batal',
+    confirmButtonColor: '#0284c7',
+    preConfirm: () => {
+      const ref = document.getElementById('uploadOrderRef').value.trim();
+      const fileInput = document.getElementById('uploadFilePicker');
+      if (!ref) {
+        Swal.showValidationMessage('Harap masukkan Nomor Referensi pesanan.');
+        return false;
+      }
+      if (!fileInput.files || fileInput.files.length === 0) {
+        Swal.showValidationMessage('Harap pilih foto bukti transfer.');
+        return false;
+      }
+      return { ref, file: fileInput.files[0] };
+    }
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      const { ref, file } = result.value;
+
+      if (!SRPCOM_CONFIG.gasApiUrl) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Mode Offline Aktif',
+          text: 'Backend Google Apps Script belum dikonfigurasi. Silakan kirimkan bukti transfer Anda langsung ke nomor WhatsApp Admin.',
+          confirmButtonColor: '#0284c7'
+        });
+        return;
+      }
+
+      // Tampilkan Loading Spinner
+      Swal.fire({
+        title: 'Mengunggah ke Google Drive...',
+        html: '<div class="text-xs text-slate-500">Sedang memproses dan menyimpan file Anda...</div>',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+
+      try {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const base64Data = reader.result;
+          const res = await fetch(SRPCOM_CONFIG.gasApiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'uploadProof',
+              orderRef: ref,
+              fileBase64: base64Data,
+              fileName: file.name,
+              mimeType: file.type
+            })
+          });
+
+          const data = await res.json();
+          if (data && data.status === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil Diunggah!',
+              html: `Bukti transfer pesanan <b>${ref}</b> telah berhasil tersimpan di Google Drive Toko SRPCOM.<br><br><span class="text-xs text-slate-500">Admin kami akan segera memverifikasi pesanan Anda.</span>`,
+              confirmButtonColor: '#10b981'
+            });
+          } else {
+            throw new Error(data.message || 'Gagal menyimpan bukti transfer');
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Mengunggah',
+          text: err.message || 'Terjadi kesalahan jaringan saat mengunggah file.',
+          confirmButtonColor: '#0284c7'
+        });
+      }
+    }
+  });
+}
+
+// 13C. CEK STATUS PESANAN DARI GOOGLE SHEETS
+function openCheckOrderModal() {
+  Swal.fire({
+    title: 'Cek Status Pesanan',
+    html: `
+      <div class="text-left text-sm space-y-3">
+        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nomor Referensi Transaksi</label>
+        <div class="flex gap-2">
+          <input type="text" id="checkOrderRef" placeholder="Contoh: SRP-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 uppercase">
+        </div>
+        <p class="text-[11px] text-slate-400">Nomor referensi tertera pada ringkasan pesanan dan pesan WhatsApp Anda.</p>
+      </div>
+    `,
+    showCancelButton: true,
+    confirmButtonText: '🔍 Cek Status',
+    cancelButtonText: 'Tutup',
+    confirmButtonColor: '#0284c7',
+    preConfirm: () => {
+      const ref = document.getElementById('checkOrderRef').value.trim();
+      if (!ref) {
+        Swal.showValidationMessage('Harap masukkan No. Referensi pesanan.');
+        return false;
+      }
+      return ref;
+    }
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      const ref = result.value;
+
+      if (!SRPCOM_CONFIG.gasApiUrl) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Layanan Belum Tersambung ke Sheets',
+          html: `Silakan tanyakan status pesanan <b>${escapeHtml(ref)}</b> langsung ke WhatsApp Admin kami.`,
+          confirmButtonText: 'Hubungi WA Admin',
+          showCancelButton: true,
+          confirmButtonColor: '#10b981'
+        }).then(r => {
+          if (r.isConfirmed) {
+            window.open(`https://wa.me/${SRPCOM_CONFIG.whatsappNumber}?text=Halo%20Admin%20Toko%20SRPCOM,%20saya%20mau%20cek%20status%20pesanan%20${ref}`, '_blank');
+          }
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: 'Mencari data pesanan...',
+        didOpen: () => Swal.showLoading(),
+        allowOutsideClick: false
+      });
+
+      try {
+        const res = await fetch(`${SRPCOM_CONFIG.gasApiUrl}?action=checkOrder&ref=${encodeURIComponent(ref)}`);
+        const json = await res.json();
+
+        if (json.status === 'success' && json.order) {
+          const ord = json.order;
+          let badgeColor = 'bg-amber-100 text-amber-800';
+          if (String(ord.status).toUpperCase().includes('SUKSES')) badgeColor = 'bg-emerald-100 text-emerald-800';
+          if (String(ord.status).toUpperCase().includes('BATAL')) badgeColor = 'bg-rose-100 text-rose-800';
+
+          Swal.fire({
+            title: 'Detail Pesanan',
+            html: `
+              <div class="text-left text-sm space-y-3">
+                <div class="flex justify-between items-center pb-2 border-b border-slate-200">
+                  <span class="text-xs font-mono font-bold text-slate-500">${ord.orderRef}</span>
+                  <span class="text-xs font-extrabold uppercase px-2.5 py-1 rounded-full ${badgeColor}">${ord.status}</span>
+                </div>
+                <div class="space-y-1.5 text-xs text-slate-600">
+                  <div>Produk: <b class="text-slate-900">${escapeHtml(ord.productName)}</b></div>
+                  <div>Tujuan/ID: <b class="text-slate-900 font-mono">${escapeHtml(ord.customerNo)}</b></div>
+                  <div>Total Bayar: <b class="text-emerald-600 font-mono font-bold">${formatRupiah(ord.totalPrice)}</b></div>
+                  <div>Waktu: <span class="text-slate-500">${ord.timestamp}</span></div>
+                  <div>Bukti: ${ord.proofUrl && ord.proofUrl !== '-' ? `<a href="${ord.proofUrl}" target="_blank" class="text-sky-600 underline font-bold">Lihat di Google Drive ↗</a>` : '<span class="text-slate-400">Belum diunggah</span>'}</div>
+                </div>
+              </div>
+            `,
+            confirmButtonText: 'Tutup',
+            confirmButtonColor: '#0284c7'
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Tidak Ditemukan',
+            text: `Pesanan dengan nomor referensi ${ref} tidak ditemukan di database.`,
+            confirmButtonColor: '#0284c7'
+          });
+        }
+      } catch (err) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Mengambil Data',
+          text: err.message,
+          confirmButtonColor: '#0284c7'
+        });
+      }
+    }
+  });
 }
 
 // 14. COPY TO CLIPBOARD HELPER
