@@ -385,5 +385,5 @@ function setupDatabase() {
   // Buat folder Google Drive jika belum ada
   getOrCreateFolder(CONFIG.DRIVE_FOLDER_NAME);
 
-  SpreadsheetApp.getActiveSpreadsheet().toast('Database Toko SRPCOM dan Folder Google Drive Berhasil Disiapkan!', 'Sukses', 5);
+  ss.toast('Database Toko SRPCOM dan Folder Google Drive Berhasil Disiapkan!', 'Sukses', 5);
 }
