@@ -9,7 +9,7 @@
 // Jika script dibuat standalone (terpisah dari sheet), isi ID spreadsheet di bawah.
 // Jika script dibuat via Extensions > Apps Script di Google Sheets, biarkan kosong.
 const CONFIG = {
-  SPREADSHEET_ID: '1DAfd0hyV82xiy-XFMjH754yyjpTxlF_S2jdYsfyi2Lw',
+  SPREADSHEET_ID: '1DAfd0hyV82xiy-XFMjH754yyjpTxIF_S2jdYsfyi2Lw',
   DRIVE_FOLDER_NAME: 'Bukti Transfer Toko SRPCOM',
   SHEET_PRODUCTS: 'Produk',
   SHEET_ORDERS: 'Orders'
